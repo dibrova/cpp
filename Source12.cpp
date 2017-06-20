@@ -14,7 +14,7 @@
 #include <time.h>
 using namespace std;
 
-/*
+
 void init(int array[], unsigned int size)
 {
 	for (unsigned int i = 0; i < size; i++)
@@ -121,4 +121,4 @@ void main_12()
 	show(arrC, sizeC, 3);
 
 }
-*/
+
