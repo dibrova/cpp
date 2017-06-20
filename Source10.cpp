@@ -1,4 +1,4 @@
-/*
+
 #include <iostream>
 #include <iomanip>
 #include <time.h>
@@ -106,4 +106,4 @@ void main_10()
 	//InsertedSort(a, b, size);
 	show(a, size, 2);
 	show(b, size, 2);
-}*/
+}
