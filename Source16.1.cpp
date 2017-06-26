@@ -58,7 +58,7 @@ void main_16_1() {
 	VIDEOSHOP VLD_MOVIE;
 	VLD_MOVIE.film = NULL;
 
-	cout << "Äîáðî ïîæàëîâàòü â áàçó ôèëüìîâ âèäåîìàãàçèíà \"VLAD'S MOVIE\"!!!" << endl << endl;
+	cout << "Добро пожаловать в базу фильмов видеомагазина \"VLAD'S MOVIE\"!!!" << endl << endl;
 
 	int check = -1;
 
@@ -69,12 +69,12 @@ void main_16_1() {
 		MENU[i] = new char[50];
 	}
 
-	MENU[0] = "Äîáàâèòü ôèëüì";
-	MENU[1] = "Îòîáðàçèòü âñå ôèëüìû";
-	MENU[2] = "Ïîèñê ïî íàçâàíèþ";
-	MENU[3] = "Ïîèñê ïî æàíðó";
-	MENU[4] = "Ïîèñê ïî ðåæèññåðó";
-	MENU[5] = "10 ñàìûõ ïîïóëÿðíûõ ôèëüìîâ";
+	MENU[0] = "Добавить фильм";
+	MENU[1] = "Отобразить все фильмы";
+	MENU[2] = "Поиск по названию";
+	MENU[3] = "Поиск по жанру";
+	MENU[4] = "Поиск по режиссеру";
+	MENU[5] = "10 самых популярных фильмов";
 
 	do {
 		menu(check, MENU, amount_of_menu, &VLD_MOVIE);
@@ -97,31 +97,31 @@ FILM * incfilm(FILM * film, int &SizeOfBase, int &check) {
 		film[i].genre = new char[50];
 	}
 
-	cout << "Ââåäèòå íàçâàíèå ôèëüìà: ";
+	cout << "Введите название фильма: ";
 	gets_s(film[SizeOfBase - 1].name, 100);
 	OemToAnsi(film[SizeOfBase - 1].name, film[SizeOfBase - 1].name);
-	cout << "Ââåäèòå æàíð ôèëüìà: ";
+	cout << "Введите жанр фильма: ";
 	gets_s(film[SizeOfBase - 1].genre, 50);
 	OemToAnsi(film[SizeOfBase - 1].genre, film[SizeOfBase - 1].genre);
-	cout << "Ââåäèòå Ô.È.Î. ðåæèññåðà ôèëüìà: ";
+	cout << "Введите Ф.И.О. режиссера фильма: ";
 	gets_s(film[SizeOfBase - 1].director, 50);
 	OemToAnsi(film[SizeOfBase - 1].director, film[SizeOfBase - 1].director);
-	cout << "Ââåäèòå ðåéòèíã ôèëüìà: ";
+	cout << "Введите рейтинг фильма: ";
 	cin >> film[SizeOfBase - 1].rating;
 
 	if (cin.fail()) {
-		cerr << "Ââåäåí íåïðàâèëüíûé òèï äàííûõ! Îïåðàöèÿ ââîäà ïðåðâàíà... (íàæìèòå ëþáóþ êëàâèøó)" << endl;
+		cerr << "Введен неправильный тип данных! Операция ввода прервана... (нажмите любую клавишу)" << endl;
 		cin.clear();
 		cin.sync();
 		getch();
 		incfilm(film, SizeOfBase, check);
 	}
 
-	cout << "Ââåäèòå öåíó äèñêà ñ ôèëüìîì: ";
+	cout << "Введите цену диска с фильмом: ";
 	cin >> film[SizeOfBase - 1].price;
 
 	if (cin.fail()) {
-		cerr << "Ââåäåí íåïðàâèëüíûé òèï äàííûõ! Îïåðàöèÿ ââîäà ïðåðâàíà... (íàæìèòå ëþáóþ êëàâèøó)" << endl;
+		cerr << "Введен неправильный тип данных! Операция ввода прервана... (нажмите любую клавишу)" << endl;
 		cin.clear();
 		cin.sync();
 		getch();
@@ -129,7 +129,7 @@ FILM * incfilm(FILM * film, int &SizeOfBase, int &check) {
 	}
 
 	check = -1;
-	cout << "Íàæìèòå ëþáóþ êëàâèøó äëÿ âîçâðàòà â ìåíþ...";
+	cout << "Нажмите любую клавишу для возврата в меню...";
 	getch();
 
 	return film;
@@ -138,38 +138,38 @@ FILM * incfilm(FILM * film, int &SizeOfBase, int &check) {
 void show_all(FILM* film, int &SizeOfBase, int &check) {
 	system("cls");
 	for (int i = 0; i<SizeOfBase; i++) {
-		cout << "Íàçâàíèå ôèëüìà: ";
+		cout << "Название фильма: ";
 		puts(film[i].name);
-		cout << "\t" << "Æàíð ôèëüìà: ";
+		cout << "\t" << "Жанр фильма: ";
 		puts(film[i].genre);
-		cout << "\t" << "Ðåæèññåð ôèëüìà: ";
+		cout << "\t" << "Режиссер фильма: ";
 		puts(film[i].director);
-		cout << "\t" << "Ðåéòèíã ôèëüìà - " << film[i].rating << endl;
-		cout << "\t" << "Öåíà äèñêà ñ ôèëüìîì - " << film[i].price << endl;
+		cout << "\t" << "Рейтинг фильма - " << film[i].rating << endl;
+		cout << "\t" << "Цена диска с фильмом - " << film[i].price << endl;
 		cout << endl;
 	}
 
 	check = -1;
-	cout << "Íàæìèòå ëþáóþ êëàâèøó äëÿ âîçâðàòà â ìåíþ...";
+	cout << "Нажмите любую клавишу для возврата в меню...";
 	getch();
 }
 
 void show_some(FILM* film, int position) {
 	cout << endl;
-	cout << "Íàçâàíèå ôèëüìà: ";
+	cout << "Название фильма: ";
 	puts(film[position].name);
-	cout << "\t" << "Æàíð ôèëüìà: ";
+	cout << "\t" << "Жанр фильма: ";
 	puts(film[position].genre);
-	cout << "\t" << "Ðåæèññåð ôèëüìà: ";
+	cout << "\t" << "Режиссер фильма: ";
 	puts(film[position].director);
-	cout << "\t" << "Ðåéòèíã ôèëüìà - " << film[position].rating << endl;
-	cout << "\t" << "Öåíà äèñêà ñ ôèëüìîì - " << film[position].price << endl;
+	cout << "\t" << "Рейтинг фильма - " << film[position].rating << endl;
+	cout << "\t" << "Цена диска с фильмом - " << film[position].price << endl;
 }
 
 void name_search(FILM* film, int SizeOfBase, int &check) {
 	system("cls");
 	char * text = new char[100];
-	cout << "Ââåäèòå èìÿ ôèëüìà äëÿ ïîèñêà: ";
+	cout << "Введите имя фильма для поиска: ";
 
 	cin.clear();
 	cin.sync();
@@ -187,7 +187,7 @@ void name_search(FILM* film, int SizeOfBase, int &check) {
 	}
 
 	if (kol == 0) {
-		cout << "Ïî çàïðîñó íè÷åãî íå íàéäåíî" << endl;
+		cout << "По запросу ничего не найдено" << endl;
 	}
 
 	cout << endl;
@@ -196,14 +196,14 @@ void name_search(FILM* film, int SizeOfBase, int &check) {
 	text = NULL;
 
 	check = -1;
-	cout << "Íàæìèòå ëþáóþ êëàâèøó äëÿ âîçâðàòà â ìåíþ...";
+	cout << "Нажмите любую клавишу для возврата в меню...";
 	getch();
 }
 
 void genre_search(FILM* film, int SizeOfBase, int &check) {
 	system("cls");
 	char * text = new char[100];
-	cout << "Ââåäèòå æàíð ôèëüìà äëÿ ïîèñêà: ";
+	cout << "Введите жанр фильма для поиска: ";
 
 	cin.clear();
 	cin.sync();
@@ -221,7 +221,7 @@ void genre_search(FILM* film, int SizeOfBase, int &check) {
 	}
 
 	if (kol == 0) {
-		cout << "Ïî çàïðîñó íè÷åãî íå íàéäåíî" << endl;
+		cout << "По запросу ничего не найдено" << endl;
 	}
 
 	cout << endl;
@@ -230,14 +230,14 @@ void genre_search(FILM* film, int SizeOfBase, int &check) {
 	text = NULL;
 
 	check = -1;
-	cout << "Íàæìèòå ëþáóþ êëàâèøó äëÿ âîçâðàòà â ìåíþ...";
+	cout << "Нажмите любую клавишу для возврата в меню...";
 	getch();
 }
 
 void director_search(FILM* film, int SizeOfBase, int &check) {
 	system("cls");
 	char * text = new char[100];
-	cout << "Ââåäèòå ðåæèññåðà ôèëüìà äëÿ ïîèñêà: ";
+	cout << "Введите режиссера фильма для поиска: ";
 
 	cin.clear();
 	cin.sync();
@@ -255,7 +255,7 @@ void director_search(FILM* film, int SizeOfBase, int &check) {
 	}
 
 	if (kol == 0) {
-		cout << "Ïî çàïðîñó íè÷åãî íå íàéäåíî" << endl;
+		cout << "По запросу ничего не найдено" << endl;
 	}
 
 	cout << endl;
@@ -264,7 +264,7 @@ void director_search(FILM* film, int SizeOfBase, int &check) {
 	text = NULL;
 
 	check = -1;
-	cout << "Íàæìèòå ëþáóþ êëàâèøó äëÿ âîçâðàòà â ìåíþ...";
+	cout << "Нажмите любую клавишу для возврата в меню...";
 	getch();
 }
 
@@ -390,7 +390,8 @@ void top_rating(FILM* film, int SizeOfBase, int &check) {
 
 	cout << endl;
 	check = -1;
-	cout << "Íàæìèòå ëþáóþ êëàâèøó äëÿ âîçâðàòà â ìåíþ...";
+	cout << "Нажмите любую клавишу для возврата в меню...";
 	getch();
 
 }
+
